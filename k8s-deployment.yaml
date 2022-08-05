@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-k8s
+spec:
+  selector:
+    matchLabels:
+      app: spring-boot-k8s
+  replicas: 2 # number of replicas of the application
+  template:
+    metadata:
+      labels:
+        app: spring-boot-k8s
+    spec:
+      containers:
+        - name: spring-boot-k8s
+          image: awsadmindakets/code-with-quarkus:88 # Image that will be used in the containers version 1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # port that the container running in the cluster
